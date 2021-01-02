@@ -12,14 +12,17 @@ export const UserStorage = ({ children }) => {
 
   const navigate = useNavigate();
 
-  const userLogout = React.useCallback(async function () {
-    setData(null);
-    setError(null);
-    setLoading(false);
-    setLogin(false);
-    window.localStorage.removeItem("DOGS-Token");
-    navigate("/login");
-  }, []);
+  const userLogout = React.useCallback(
+    async function () {
+      setData(null);
+      setError(null);
+      setLoading(false);
+      setLogin(false);
+      window.localStorage.removeItem("DOGS-Token");
+      navigate("/login");
+    },
+    [navigate]
+  );
 
   async function getUser(token) {
     const { url, options } = USER_GET(token);
